@@ -8,6 +8,7 @@ Setup the Conda environment
 ```bash
 # Create a new environment
 conda create -n dltraining python=3.7
+conda activate dltraining
 ```
 
 ```bash

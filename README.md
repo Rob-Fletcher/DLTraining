@@ -14,4 +14,4 @@ conda env create -f environment.yml
 
 ## Lessons
 
-[Intro To ANNs](InroToANN/IntroToANN.slides.html)
+[Intro To ANNs](IntroToANN/IntroToANN.slides.html)

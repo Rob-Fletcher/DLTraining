@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: Deep Learning Training
+description: Training resources for Esri's internal deep learning workshop.
+logo: static/img/esri_logo.jpeg

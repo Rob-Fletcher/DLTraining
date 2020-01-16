@@ -14,4 +14,8 @@ conda env create -f environment.yml
 
 ## Lessons
 
-[Intro To ANNs](IntroToANN/IntroToANN.slides.html)
+[Intro To ANNs](IntroToANN/IntroToANN.slides.html){:target="_blank"}
+
+[Convolutional Neural Networks](CNNs/CNNs.slides.html){:target="_blank"}
+
+[Intro To Pytorch](IntroToPytorch/IntroToPytorch.slides.html){:target="_blank"}

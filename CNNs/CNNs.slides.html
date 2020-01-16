@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>IntroToANN slides</title>
+<title>CNNs slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13215,11 +13215,8 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Intro-to-Artificial-Neural-Networks">Intro to Artificial Neural Networks<a class="anchor-link" href="#Intro-to-Artificial-Neural-Networks">&#182;</a></h1><p><br/></p>
-
-<pre><code>1. Perceptron and Feed-forward Networks
-2. Optimzation, the Loss, and Backpropagation
-3. Survey of Common Types of ANN</code></pre>
+<h1 id="Convolutional-Neural-Networks">Convolutional Neural Networks<a class="anchor-link" href="#Convolutional-Neural-Networks">&#182;</a></h1><p>In this lesson we are going to take a deeper dive in to CNNs and their variants. Almost 
+all imagery projects will use CNNs in one form or another.</p>
 
 </div>
 </div>
@@ -13227,218 +13224,44 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Perceptron-and-Feed-forward-Networks">Perceptron and Feed-forward Networks<a class="anchor-link" href="#Perceptron-and-Feed-forward-Networks">&#182;</a></h1><center><img src="img/perceptron.png" width="240" height="240"></center><p><br/>
-The simplest form of the ANN is the perceptron. One single unit that performs an operation on inputs and returns a single output</p>
+<h2 id="What-is-a-convolution">What is a convolution<a class="anchor-link" href="#What-is-a-convolution">&#182;</a></h2><p>Remeber from last time, CNNs have their weights arranged into blocks called filters. This forces the weights to have an explicit spatial relationship.</p>
+<center><img src="img/filter.png" width=500></center>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One layer of a CNN will be composed of many filters (sometimes called kernels). Each filter produces one output.</p>
+<center><img src="img/anim.gif" width="300"></center>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center><img src="img/perceptron.png" width="240" height="240"/></center><p><br/>
-$$
-\large
-f(w_1 x_1 + w_2 x_2 + ... + w_N x_N + b) =  f\left(b + \sum_{i=1}^{N} w_i x_i \right) =  y
-$$</p>
-<p><br/>
-$f(x)$ is called the activation function and $b$ is the bias. In principal this could be anything but it typically some non-linear function.</p>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 
+    </div>
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Two-Layer-Perceptron">Two Layer Perceptron<a class="anchor-link" href="#Two-Layer-Perceptron">&#182;</a></h2><p>We can stack these perceptrons together to introduce more parameters and more non-linear behavior</p>
-$$
-\large
-f\left(b + \sum_{i=1}^{N} w_{i} h_i(x) \right) = y
-$$<p>where $h_i(x)$ can be another set of perceptrons like in the previous slides.</p>
-<center><img src="img/twolayer.png" width="600"/> </center>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activation-Functions">Activation Functions<a class="anchor-link" href="#Activation-Functions">&#182;</a></h3><p>The $f(x)$ we used earlier introduces non-linearity into the perceptron. Without non-linearities a multilayer perceptron would reduce to a single layer perceptron through a simple redefinition of parameters (the $w$s).</p>
-<center><img src="img/activations.png"/></center>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="For-a-certain-set-of-parameters-W,-the-input-of-&quot;cat&quot;-will-return-a-value-corresponding-to-the-classification-&quot;cat&quot;.">For a certain set of parameters W, the input of "cat" will return a value corresponding to the classification "cat".<a class="anchor-link" href="#For-a-certain-set-of-parameters-W,-the-input-of-&quot;cat&quot;-will-return-a-value-corresponding-to-the-classification-&quot;cat&quot;.">&#182;</a></h3><center><img src="img/cat_equation.png" width="500"></center>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Optimization,-the-Loss,-and-Backpropagation">Optimization, the Loss, and Backpropagation<a class="anchor-link" href="#Optimization,-the-Loss,-and-Backpropagation">&#182;</a></h1><h3 id="Can-we-find-the-parameters-$w_{ij}$-such-that-for-an-input-$x$-we-get-the-answer-we-want-$y$?">Can we find the parameters $w_{ij}$ such that for an input $x$ we get the answer we want $y$?<a class="anchor-link" href="#Can-we-find-the-parameters-$w_{ij}$-such-that-for-an-input-$x$-we-get-the-answer-we-want-$y$?">&#182;</a></h3><p>This seems like a simple optimization problem. Find the $w_{ij}$ that minimize (<strong>insert thing to minimize here</strong>).</p>
-<p>But what do we minimize? How do we find where that thing is a minimum?</p>
 
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<center><img src="img/simpleGD.png" width="500"/></center><p>Lots of methods exist for "Gradient Descent" minimization. All modern methods use derivatives to estimate the slope in some region, then take a step "downhill".</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Loss">The Loss<a class="anchor-link" href="#The-Loss">&#182;</a></h2><p>The thing to minimize we call the loss or loss function. It is simply a measure of distance between what the output of our network is and what we think it should be for a given input.</p>
-<p>The simplest loss function you could have is the <strong>Mean Absolute Error (MAE)</strong></p>
-$$
-\Large
-MAE = |y-\hat{y}|
-$$<p>Here $y$ is the "target" or what we want the network to output, and $\hat{y}$ is the actual output of the network.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Now-we-just-need-to-iteratively-take-steps-towards-the-bottom-of-the-loss.">Now we just need to iteratively take steps towards the bottom of the loss.<a class="anchor-link" href="#Now-we-just-need-to-iteratively-take-steps-towards-the-bottom-of-the-loss.">&#182;</a></h4><p>This is done by calculating the gradient at your current point then taking a step in the direction of the steepest slope. Lets consider a two layer perceptron with a single input and output.</p>
-<center><img src="img/simpleExample.svg" width="250"/></center><p><br/>
-$$
-\large
-h(x) = f(b_1 + w_1 x)
-$$</p>
-<p>is the value of the hidden unit, and</p>
-$$
-\large
-\hat{y} = f( b_2 + w_2 h(x)) 
-$$<p></p>
-<p>is the value of the output.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The update rule for our weights is,</p>
-<p><br/>
-$$
-\large
-w_{i+1} = w_i - \epsilon \frac{\partial L}{\partial w}; \space \space b_{i+1} = b_i - \epsilon \frac{ \partial L }{ \partial b}
-$$</p>
-<p>So we need to find the gradients of the loss with respect to the parameters of the network. For a one layer network this is easy, but for deeper networks we can use the chain rule.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-$$
-\large
-\frac{\partial L}{\partial w_2} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial z_2} \frac{\partial z_2}{\partial w_2}
-$$<p><br/>
-where we have set $\large z_2 = b_2 + w_2 h(x)$</p>
-<p><br/></p>
-<center><img src="img/backprop.svg" width="400"></center>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="These-are-all-the-components-needed-to-train-a-neural-network">These are all the components needed to train a neural network<a class="anchor-link" href="#These-are-all-the-components-needed-to-train-a-neural-network">&#182;</a></h3>
-<pre><code>1. Linear combination of weights
-2. Non-linear activation function
-3. Derivatives of Loss function with respect to all parameters
-
-</code></pre>
-<p><br/>
-<br/></p>
-<p><strong>Note:</strong> The way computers calculate derivates is through a process called <strong>Auto-differentiation</strong>. It uses the chain rule to split the derivative up into smaller parts until it can evaluate a math primative. This is very similar to what we want to do with backpropagation.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Survey-of-Common-Types-of-ANNs">Survey of Common Types of ANNs<a class="anchor-link" href="#Survey-of-Common-Types-of-ANNs">&#182;</a></h1><h2 id="Feed-Forward-Network">Feed Forward Network<a class="anchor-link" href="#Feed-Forward-Network">&#182;</a></h2><p>Any combination of preceptrons arranged in layers.</p>
-<center><img src="img/feedforward.png" width="300"></center><p>Common uses are classification and regression.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Autoencoders">Autoencoders<a class="anchor-link" href="#Autoencoders">&#182;</a></h2><center> <img src="img/autoencoder.png" width="300"/> </center><p><br/></p>
-<p><strong>Unsupervised learning</strong> - The inputs are used as the labels.</p>
-<p>Can be used as a learned compression for a specific type of data. Can be used as an anomoly detector by selecting inputs that have a large reconstruction error.</p>
-<p>There are a ton of variations on autoencoders.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="De-noising-Autoencoders">De-noising Autoencoders<a class="anchor-link" href="#De-noising-Autoencoders">&#182;</a></h2><center> <img src="img/DAE.png" /> </center><h3 id="Can-learn-to-remove-noise-from-inputs">Can learn to remove noise from inputs<a class="anchor-link" href="#Can-learn-to-remove-noise-from-inputs">&#182;</a></h3>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Recurrent-Neural-Networks">Recurrent Neural Networks<a class="anchor-link" href="#Recurrent-Neural-Networks">&#182;</a></h2><center> <img src="img/RNN.png" width="500"/> </center><p>The output of the node (the hidden state) is concatenated with the next input. This recurrence allows the network to learn patterns in sequences of data.</p>
-<p>Commonly used in NLP to generate sentences or translate from one language to another.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convolutional-Neural-Network-(CNN)">Convolutional Neural Network (CNN)<a class="anchor-link" href="#Convolutional-Neural-Network-(CNN)">&#182;</a></h2><center><img src="img/CNN.png"></center><p>CNNs have their weights arranged into "filters". This makes them preserve spatial nature of the inputs. The easiest way to see how this works is to look at an example:</p>
-<center><a href="http://setosa.io/ev/image-kernels/" target="_blank">Image Kernels</a></center>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Every-filter-is-passed-over-the-image-to-produce-a-feature-map.">Every filter is passed over the image to produce a feature map.<a class="anchor-link" href="#Every-filter-is-passed-over-the-image-to-produce-a-feature-map.">&#182;</a></h2><center><img src="img/CNNVolume.png" width="500"/></center><h3 id="The-next-layer-then-passes-a-new-set-of-filters-over-the-feature-maps.">The next layer then passes a new set of filters over the feature maps.<a class="anchor-link" href="#The-next-layer-then-passes-a-new-set-of-filters-over-the-feature-maps.">&#182;</a></h3>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><center><img src="img/features.png" width="900"/><center></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Next-time...-Pytorch!">Next time... Pytorch!<a class="anchor-link" href="#Next-time...-Pytorch!">&#182;</a></h1>
-</div>
-</div>
 </div></section></section>
 </div>
 </div>

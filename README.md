@@ -1,5 +1,7 @@
 # DLTraining
 
+View the slides for this training [here](https://rob-fletcher.github.io/DLTraining/)
+
 
 ## Installation Instructions
 

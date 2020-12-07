@@ -24,7 +24,7 @@ and then do a quick survey of common types of ANNs and what they are used for.
 We will begin to cover the basics of Pytorch and its core components. We will then look at how these components can
 be used to create a computation graph and how the Optim package allows us to backpropagate through it.
 
-### [Hands on with Pytorch](HandsOn_1){:target="_blank"}
+### [Hands on with Pytorch](https://github.com/Rob-Fletcher/DLTraining/tree/master/HandsOn_1){:target="_blank"}
 The notebooks provided in the repo show a simple example of using deep learning to solve the classification problem
 with the MNIST and FashionMNIST datasets. 
 

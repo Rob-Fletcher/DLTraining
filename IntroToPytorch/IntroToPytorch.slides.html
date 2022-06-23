@@ -15673,7 +15673,7 @@ X =
   x_{2} \\
   x_{3} \\
 \end{bmatrix} \quad \quad
-Y = AX = \sum_i a_{ij} x_j, \quad
+Y = AX = \sum_j a_{ij} x_j, \quad
 Y = \begin{bmatrix}y_1 \\ y_2 \\ y_3 \\ \end{bmatrix}
 $$<p><br/>
 Can be written as,
@@ -16203,7 +16203,7 @@ tensor([-1.])
 <h2 id="Pytorch-vs.-Tensorflow">Pytorch vs. Tensorflow<a class="anchor-link" href="#Pytorch-vs.-Tensorflow">&#182;</a></h2><p>In Tensorflow the computation graph is defined at initialization and the graph is run by simply passing all the inputs through it.</p>
 <p>In Pytorch the computation graph is built up from the operations contained in the tensors. After a call to <code>backward</code> all <code>grad_fn</code> references are destroyed. The next forward pass of the graph recreates each of these. This means the computation graph can change at run time.</p>
 <h3 id="Tensorflow---Static-Computation-Graph"><strong>Tensorflow</strong> - Static Computation Graph<a class="anchor-link" href="#Tensorflow---Static-Computation-Graph">&#182;</a></h3><h3 id="Pytorch---Dynamic-Computation-Graph"><strong>Pytorch</strong> - Dynamic Computation Graph<a class="anchor-link" href="#Pytorch---Dynamic-Computation-Graph">&#182;</a></h3><p><br/></p>
-<h6 id="*-Tensorflow-2.0-uses-eager-execution-which-gives-it-some-dynamic-graph-capabilities">* Tensorflow 2.0 uses eager execution which gives it some dynamic graph capabilities<a class="anchor-link" href="#*-Tensorflow-2.0-uses-eager-execution-which-gives-it-some-dynamic-graph-capabilities">&#182;</a></h6>
+<h6 id="*-Tensorflow-2.0-uses-eager-execution-which-gives-it-some-dynamic-graph-capabilities">* Tensorflow 2.0 uses eager execution which gives it <em>some</em> dynamic graph capabilities<a class="anchor-link" href="#*-Tensorflow-2.0-uses-eager-execution-which-gives-it-some-dynamic-graph-capabilities">&#182;</a></h6>
 </div>
 </div>
 </div>
@@ -16228,7 +16228,7 @@ tensor([-1.])
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Pytorch-Modules---torch.nn.Module">Pytorch Modules - <code>torch.nn.Module</code><a class="anchor-link" href="#Pytorch-Modules---torch.nn.Module">&#182;</a></h1><p>In Pytorch we create computation graphs with Modules. There are many prebuilt ones but the <code>Module</code> class allows us to create our own as well.</p>
+<h2 id="Pytorch-Modules---torch.nn.Module">Pytorch Modules - <code>torch.nn.Module</code><a class="anchor-link" href="#Pytorch-Modules---torch.nn.Module">&#182;</a></h2><p>In Pytorch we create computation graphs with Modules. There are many prebuilt ones but the <code>Module</code> class allows us to create our own as well.</p>
 <p>Neural networks tend to have their computation graph organized into layers. This is the same as how we stacked layers of perceptrons previously. A layer of perceptrons, which is a linear combination of its inputs, is implemented in a module conveniently called <code>Linear</code>.</p>
 
 </div>
@@ -16459,7 +16459,7 @@ tensor([-1.])
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="The-torch.optim-Package">The <code>torch.optim</code> Package<a class="anchor-link" href="#The-torch.optim-Package">&#182;</a></h1><p>We have explored tensors, computation graphs and the ability to calculate their gradients. Now we need to adjust the weights of the network based on their gradients. This is done with the <code>torch.optim</code> package.</p>
+<h2 id="The-torch.optim-Package">The <code>torch.optim</code> Package<a class="anchor-link" href="#The-torch.optim-Package">&#182;</a></h2><p>We have explored tensors, computation graphs and the ability to calculate their gradients. Now we need to adjust the weights of the network based on their gradients. This is done with the <code>torch.optim</code> package.</p>
 <p>This package contains all of the optimizers that are available for use in Pytorch, as well as the framework to make new ones.</p>
 <p>We will explore in detail an optimizer called <strong>Stochastic Gradient Descent</strong> (<strong>SGD</strong>) and then briefly describe more modern optimizers that are modifications of <strong>SGD</strong>.</p>
 
@@ -16679,11 +16679,27 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h1><p>We have taken a look at the basic components of Pytorch and how they can be combined to form computation graphs. We then looked at how to optimize our paramters with gradient descent and got a preview of modern optimizers.</p>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>We have taken a look at the basic components of Pytorch and how they can be combined to form computation graphs. We then looked at how to optimize our paramters with gradient descent and got a preview of modern optimizers.</p>
 <center> <img src="https://media.giphy.com/media/1PNcBiyhzL0Na/giphy.gif"/> </center><h2 id="Next-time...--Hands-on-with-Pytorch!">Next time...  Hands on with Pytorch!<a class="anchor-link" href="#Next-time...--Hands-on-with-Pytorch!">&#182;</a></h2>
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div></section></section>
 </div>
 </div>
